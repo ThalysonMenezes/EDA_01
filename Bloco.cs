@@ -5,49 +5,51 @@ namespace EDA_ATV_01
 {
     public class Bloco
     {
-        Random random = new Random();
-        public void PreencherVetor1(int[] v1){
-            for (int i = 0; i < v1.Length; i++) v1[i] = random.Next(1, 1000);
-            Console.WriteLine("\nÍndices do vetor1 preenchidos randomicamente!\n");           
+        Random random = new Random();/*..................................................................O(1)......*/
+        public void PreencherVetor1(int[] v1){/*.....................................................O(n-1)+2O(n)..*/
+            for (int i = 0; i < v1.Length; i++) v1[i] = random.Next(1, 1000);/*.....................O(n-1)+O(n)....*/
+            Console.WriteLine("\nÍndices do vetor1 preenchidos randomicamente!\n");/*....................O(n)......*/        
         }
-        public void PreencherVetor2(int[] v2){
-            for (int i = 0; i < v2.Length; i++) v2[i] = random.Next(1, 5000);
-            Console.WriteLine("\nÍndices do vetor2 preenchidos randomicamente!\n");           
+        public void PreencherVetor2(int[] v2){/*.....................................................O(n-1)+2O(n)..*/
+            for (int i = 0; i < v2.Length; i++) v2[i] = random.Next(1, 5000);/*.....................O(n-1)+O(n)....*/
+            Console.WriteLine("\nÍndices do vetor2 preenchidos randomicamente!\n");/*....................O(n)......*/       
         }
 
-        public void ExibirVetor1(int[] v1){
+        public void ExibirVetor1(int[] v1){/*.......................................................O(n-1)+O(n)....*/
             for (int i = 0; i < v1.Length; i++) Console.WriteLine("Índice do vetor1[{0}]: {1}", i, v1[i]);
+            /*.............................O(n-1)+O(n)................................*/
         }
-        public void ExibirVetor2(int[] v2){
+        public void ExibirVetor2(int[] v2){/*.......................................................O(n-1)+O(n)....*/
             for (int i = 0; i < v2.Length; i++) Console.WriteLine("Índice do vetor2[{0}]: {1}", i, v2[i]);
+            /*.............................O(n-1)+O(n)................................*/
         }
 
-        public bool BuscaSequencialVetor1(int[] v1, int x){
-            bool encontrado = false;
+        public bool BuscaSequencialVetor1(int[] v1, int x){/*......................................O(n-1)+O(n)+4O(1)*/
+            bool encontrado = false;/*.............................................................O(1)............*/
 
-            for (int i = 0; i < v1.Length; i++) {
-                if(x.Equals(v1[i])) {
-                Console.WriteLine("\nValor {0} encontrado no índice {1} do vetor1!", x, i);
-                encontrado = true;
-                break; 
+            for (int i = 0; i < v1.Length; i++) {/*................................................O(n-1)..........*/
+                if(x.Equals(v1[i])) {/*............................................................O(n)............*/
+                Console.WriteLine("\nValor {0} encontrado no índice {1} do vetor1!", x, i);/*......O(1)............*/
+                encontrado = true;/*...............................................................O(1)............*/
+                break;/*...........................................................................O(1)............*/
                 }                  
             } 
-            return encontrado;
+            return encontrado;/*...................................................................O(1)............*/
         }
-        public bool BuscaSequencialVetor2(int[] v2, int x){
-            bool encontrado = false;
+        public bool BuscaSequencialVetor2(int[] v2, int x){/*......................................O(n-1)+O(n)+4O(1)*/
+            bool encontrado = false;/*.............................................................O(1)............*/
 
-            for (int i = 0; i < v2.Length; i++) {
-                if(x.Equals(v2[i])) {
-                Console.WriteLine("\nValor {0} encontrado no índice {1} do vetor2!", x, i);
-                encontrado = true;
-                break; 
+            for (int i = 0; i < v2.Length; i++) {/*................................................O(n-1)..........*/
+                if(x.Equals(v2[i])) {/*............................................................O(n)............*/
+                Console.WriteLine("\nValor {0} encontrado no índice {1} do vetor2!", x, i);/*......O(1)............*/
+                encontrado = true;/*...............................................................O(1)............*/
+                break;/*...........................................................................O(1)............*/
                 }                  
             } 
-            return encontrado;
+            return encontrado;/*...................................................................O(1)............*/
         }
 
-        public void OrdenacaobubbleSort(int[] vetor) {
+        public void OrdenacaobubbleSort(int[] vetor) {/*...................................O(n²)...................*/
             int trocas = 0;
             for (int i = 0; i < vetor.Length - 1; i++)
             {           
@@ -65,7 +67,7 @@ namespace EDA_ATV_01
             else                          Console.WriteLine("\nVetor2 Ordenado pelo BubbleSort!");
         }
 
-        public int[] OrdenacaoquickSort(int[] vetor){
+        public int[] OrdenacaoquickSort(int[] vetor){/*...........................................O(nlogn)..........*/
             int inicio = 0;
             int fim = vetor.Length - 1;
             quickSort(vetor, inicio, fim);
@@ -100,7 +102,7 @@ namespace EDA_ATV_01
             }
         }
 
-        public void SubstituirValorVetor1(int[] v1, int indice, int x){
+        public void SubstituirValorVetor1(int[] v1, int indice, int x){/*............................4O(1).......*/
             if(indice > 999 || indice < 0) Console.WriteLine("\nValor {0} de índice não correspondente ao vetor!", indice);
             else{
                 int aux = v1[indice];
@@ -108,7 +110,7 @@ namespace EDA_ATV_01
                 Console.WriteLine("\nValor {0} do vetor v1[{1}] substituído por {2}", aux, indice, x);
             }
         }
-        public void SubstituirValorVetor2(int[] v2, int indice, int x){
+        public void SubstituirValorVetor2(int[] v2, int indice, int x){/*............................4O(1).......*/
             if(indice > 4999 || indice < 0) Console.WriteLine("\nValor {0} de índice não correspondente ao vetor!", indice);
             else{
                 int aux = v2[indice];
@@ -117,7 +119,7 @@ namespace EDA_ATV_01
             }
         }
 
-        public void TrocarValoresV1V2(int[] v1, int[] v2){
+        public void TrocarValoresV1V2(int[] v1, int[] v2){/*............................3O(n-1)+3O(n)+2O(1).......*/
             int[] aux = new int[1000];
 
             Console.WriteLine("\nEste método substitui os primeiros 1000 valores de v1 por v2 e vice-versa!\n");
